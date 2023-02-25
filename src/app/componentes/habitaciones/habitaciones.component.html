@@ -1,0 +1,46 @@
+<app-menu></app-menu>
+<!-- <li *ngFor="let habitaciones of habitacion">
+    <span>{{habitaciones.precio}}</span> {{habitaciones.nombre}}
+  </li> -->
+ 
+
+    <!-- <div>     <label for="habitacion-nombre">Nombre: </label><input id="habitacion-nombre"  (ngModel)="habitacion.nombre" placeholder="nombre"> </div> -->
+
+    <h2>Mis habitaciones</h2>
+<!-- <ul class="habitaciones">
+  <li *ngFor="let habitaciones of habitacion"
+    [class.selected]="habitaciones === selectedHabitaciones"
+    (click)="onSelect(habitaciones)">
+    <span class="badge">{{habitaciones.id}}</span><span> {{habitaciones.nombre}}</span> {{habitaciones.precio}}
+  </li>
+</ul> -->
+
+<table border="1">
+        <tr *ngFor="let habitaciones of habitacion"
+        [class.selected]="habitaciones === selectedHabitaciones"
+        (click)="onSelect(habitaciones)"
+        border="1">
+        <td>{{habitaciones.id}}</td>
+        <td>{{habitaciones.nombre}}</td>
+        <td>{{habitaciones.precio}}</td>
+        </tr>
+</table>
+
+
+<select class='select-option'
+    #mySelect
+    (change)='onOptionsSelected(mySelect.value)'>
+   <option value="nombre">Nombre</option>
+   <option value='precio'>Precio</option>
+</select>
+
+<input type="text"  #mySelect (keyup)="filtrar(mySelect.value)">
+
+<div *ngIf="selectedHabitaciones">
+  <h2>{{ selectedHabitaciones.nombre | uppercase }} Detalles</h2>
+  <div><span>id: </span>{{selectedHabitaciones.id}}</div>
+  <div>
+    <label for="habitacion-nombre">Nombre: </label>
+      <input id="habitacion-nombre" (ngModel)="selectedHabitaciones.nombre" placeholder="nombre">
+  </div>
+</div>
